@@ -16,4 +16,12 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+    /**
+     * @Route("/{_locale}/articles", name="articles")
+     */
+    public function articles()
+    {
+        return $this->render('articles.html.twig');
+    }
 }
