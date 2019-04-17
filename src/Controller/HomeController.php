@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,6 +23,10 @@ class HomeController extends AbstractController
      */
     public function articles()
     {
-        return $this->render('articles.html.twig');
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
+
+        return $this->render('articles.html.twig', [
+            'articles' => $articles,
+        ]);
     }
 }
