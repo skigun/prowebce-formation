@@ -1,6 +1,6 @@
 <html>
     <body>
-        <h1>{{ 'app.articles.title'|trans }}</h1>
+        <h1>{{ 'app.articles.title'|trans }} - {{ environment }}</h1>
     <h3>Liste des articles :</h3>
     <ul>
         {% for article in articles %}

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Article;
+use App\Manager\ArticleManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,12 +21,13 @@ class HomeController extends AbstractController
     /**
      * @Route("/{_locale}/articles", name="articles")
      */
-    public function articles()
+    public function articles(ArticleManager $articleManager)
     {
-        $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
+        $articles = $articleManager->getArticles();
 
         return $this->render('articles.html.twig', [
             'articles' => $articles,
+            'environment' => $articleManager->getEnvironment(),
         ]);
     }
 }
