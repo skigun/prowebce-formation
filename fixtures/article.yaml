@@ -3,8 +3,10 @@ App\Entity\Article:
         title: "symfony c'est cool"
         description: "super cool !"
         created_at: "<time()>"
+        author: "@user_1"
 
     article_{2..5}:
         title: "<title()>"
         description: "<sentence()>"
         created_at: "<time()>"
+        author: "@user_<current()>"

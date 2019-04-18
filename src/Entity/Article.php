@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
+ * @ApiResource()
  */
 class Article
 {
@@ -18,6 +21,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="app.error.title")
      */
     private $title;
 
@@ -30,6 +34,13 @@ class Article
      * @ORM\Column(type="string")
      */
     private $created_at;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="articles")
+     */
+    private $author;
 
     public function getId(): ?int
     {
@@ -70,5 +81,15 @@ class Article
         $this->created_at = $created_at;
 
         return $this;
+    }
+
+    public function getAuthor(): User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(User $author)
+    {
+        $this->author = $author;
     }
 }

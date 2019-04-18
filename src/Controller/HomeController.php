@@ -19,7 +19,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/articles", name="articles")
+     * @Route("/{_locale}/articles", name="articles", requirements={"_locale":"fr|en"})
      */
     public function articles(ArticleManager $articleManager)
     {

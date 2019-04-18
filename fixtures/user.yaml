@@ -1,0 +1,14 @@
+App\Entity\User:
+    user_1:
+        firstName: Lara
+        lastName: "<lastName()>"
+        mail: "<email()>"
+        description: "<sentence()>"
+        #articles: ["@article_1"]
+
+    user_{2..5}:
+        firstName: "<firstName()>"
+        lastName: "<lastName()>"
+        mail: "<email()>"
+        description: "<sentence()>"
+        #articles: ["@article_<current()>"]
