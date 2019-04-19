@@ -2,16 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ApiResource(
- *     itemOperations={"get"},
- *     collectionOperations={"get"}
- * )
+ * @ApiResource()
+ * @ApiFilter(SearchFilter::class, properties={"firstName", "lastName"})
+ * @ApiFilter(OrderFilter::class, properties={"lastName"})
  */
 class User
 {
@@ -29,6 +32,7 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("article:read")
      */
     private $lastName;
 
